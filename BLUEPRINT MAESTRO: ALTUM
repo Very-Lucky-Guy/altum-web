@@ -1,30 +1,37 @@
 BLUEPRINT MAESTRO: ALTUM
-1. Filosofía y Esencia
-Qué es ALTUM: ALTUM no vende ropa; vende obras de arte con sentido. La polera es solo el soporte físico de una obra. Son obras que evocan un viaje interior donde la oscuridad obliga a mirar.
-El Principio: "La oscuridad no es la ausencia de luz; es el lugar donde la luz adquiere sentido".
-La Dualidad: Luz y oscuridad, caos y orden, vacío y plenitud. No son opuestos, son partes de una misma realidad.
-2. Sistema Visual (UI)
-Color de Fondo: Negro absoluto (#000000). No es elegancia, es el lienzo de la transformación.
-Acentos: Blanco puro para textos e hilos finos (#FFFFFF), y un destello leve/gris perlado muy sutil para los bordes de las poleras. Nada de dorados brillantes; el foco es el contraste absoluto.
-Tipografía: Serif elegante y minimalista para títulos (evoca lo clásico/templario) y Sans-serif ligera y espaciada para detalles.
-Las Poleras: Flotan sin gravedad, sin contexto. Como ideas suspendidas en el vacío.
-3. Sistema de Sonido (Audio)
+1. Esencia y Filosofía
+Qué es ALTUM: ALTUM no vende ropa; vende obras de arte con sentido. La polera es solo el soporte físico de una obra de arte. Son obras que evocan un viaje interior donde la oscuridad obliga a mirar.
+El Principio Creativo: "La oscuridad no es la ausencia de luz; es el lugar donde la luz adquiere sentido".
+La Temática: La dualidad (luz/oscuridad, vacío/plenitud) no es la marca en sí, sino el tema de la primera colección de obras. Las obras actúan como símbolos o espejos del observador.
+2. Modelo de Negocio y Producción
+Estrategia: Lanzamientos (Drops) estilo alta costura (ej. Balenciaga). Escasez, exclusividad y percepción premium, pero con un trasfondo filosófico que trasciende lo material.
+Técnica: Serigrafía de alta gama. Es el método elegido porque es lo más parecido a una obra de museo en cuanto a textura, profundidad y durabilidad.
+Proveedor: Apliik (Print-on-Demand premium).
+3. Drop 001: FLOREBO
+Concepto: "In still water, under a patient moon, the lotus remembers its name." La floración silenciosa en la oscuridad.
+Narrativa visual: Frente (símbolo sutil) y Espalda (laguna nocturna).
+4. Sistema Visual (UI)
+Color de Fondo: Negro absoluto (#000000). Representa el lienzo donde comienza toda transformación.
+Acentos: Blanco puro para textos e hilos finos (#FFFFFF). Destello leve/gris perlado para los bordes de las poleras. Nada de dorados.
+Tipografía: Serif elegante y minimalista para títulos; Sans-serif ligera y espaciada para microcopy.
+Las Obras (Poleras): Flotan sin gravedad, sin contexto. Como ideas suspendidas en el vacío.
+5. Sistema de Sonido (Audio)
 Estilo: Nada épico ni hollywoodense.
 Elementos: Respiración lenta, viento tenue, reverberación profunda, silencio absoluto. Espacios inmensos.
-4. Sistema de Movimiento (Animación / GSAP)
+6. Sistema de Movimiento (Animación / GSAP)
 Regla de oro: Todo es lento. El tiempo está desacelerado.
 Logo: Nace desde la nada. No ilumina la pantalla; simplemente existe como punto de referencia en la oscuridad.
 Medidas: Sin criaturas ni manos. Al abrir la ficha, aparecen líneas finísimas (SVG animado) dibujando las proporciones como si el universo mismo las revelara lentamente.
-5. Narrativa y Microcopy (UX)
+7. Narrativa y Microcopy (UX)
 Carrito de compras: Se llama "El Umbral".
 Botón de agregar: "Aceptar la obra" o "Cruzar el Umbral".
 Botón de pago (Checkout): "Continuar el viaje".
-Pantalla Post-Compra: No hay checks verdes. Vuelve la oscuridad, nace el logo y aparece la frase: "No encontraste una respuesta. Encontraste una pregunta mejor."
-6. Experiencia Física (Empaque)
+Pantalla Post-Compra: Vuelve la oscuridad, nace el logo y aparece la frase: "No encontraste una respuesta. Encontraste una pregunta mejor."
+8. Experiencia Física (Empaque)
 Caja negra, sin fotografías ni marketing. Solo el símbolo ALTUM.
-Tarjeta interior negra con una pregunta filosófica en plata/blanco (Ej: ¿Qué parte de ti reconoció esta obra antes que tu mente?). La pregunta varía según el diseño.
-7. Stack Técnico
+Tarjeta interior negra con una pregunta filosófica en blanco/plata. La pregunta varía según la obra (Ej: ¿Qué parte de ti reconoció esta obra antes que tu mente?).
+9. Stack Técnico
 CMS/Ecommerce: Shopify (Tema custom, sin usar plantillas predefinidas).
-Lenguaje: Liquid (Shopify) + HTML/CSS.
+Lenguaje: Liquid (Shopify) + HTML/CSS + JS.
 Animaciones: GSAP (GreenSock) + ScrollTrigger para movimientos lentos y revelaciones.
-Proveedor POD: Apliik (bajo demanda, máxima calidad de impresión y confección).
+Repositorio: GitHub (Conectado a Shopify para deploy automático).
