@@ -1,0 +1,30 @@
+BLUEPRINT MAESTRO: ALTUM
+1. Filosofía y Esencia
+Qué es ALTUM: ALTUM no vende ropa; vende obras de arte con sentido. La polera es solo el soporte físico de una obra. Son obras que evocan un viaje interior donde la oscuridad obliga a mirar.
+El Principio: "La oscuridad no es la ausencia de luz; es el lugar donde la luz adquiere sentido".
+La Dualidad: Luz y oscuridad, caos y orden, vacío y plenitud. No son opuestos, son partes de una misma realidad.
+2. Sistema Visual (UI)
+Color de Fondo: Negro absoluto (#000000). No es elegancia, es el lienzo de la transformación.
+Acentos: Blanco puro para textos e hilos finos (#FFFFFF), y un destello leve/gris perlado muy sutil para los bordes de las poleras. Nada de dorados brillantes; el foco es el contraste absoluto.
+Tipografía: Serif elegante y minimalista para títulos (evoca lo clásico/templario) y Sans-serif ligera y espaciada para detalles.
+Las Poleras: Flotan sin gravedad, sin contexto. Como ideas suspendidas en el vacío.
+3. Sistema de Sonido (Audio)
+Estilo: Nada épico ni hollywoodense.
+Elementos: Respiración lenta, viento tenue, reverberación profunda, silencio absoluto. Espacios inmensos.
+4. Sistema de Movimiento (Animación / GSAP)
+Regla de oro: Todo es lento. El tiempo está desacelerado.
+Logo: Nace desde la nada. No ilumina la pantalla; simplemente existe como punto de referencia en la oscuridad.
+Medidas: Sin criaturas ni manos. Al abrir la ficha, aparecen líneas finísimas (SVG animado) dibujando las proporciones como si el universo mismo las revelara lentamente.
+5. Narrativa y Microcopy (UX)
+Carrito de compras: Se llama "El Umbral".
+Botón de agregar: "Aceptar la obra" o "Cruzar el Umbral".
+Botón de pago (Checkout): "Continuar el viaje".
+Pantalla Post-Compra: No hay checks verdes. Vuelve la oscuridad, nace el logo y aparece la frase: "No encontraste una respuesta. Encontraste una pregunta mejor."
+6. Experiencia Física (Empaque)
+Caja negra, sin fotografías ni marketing. Solo el símbolo ALTUM.
+Tarjeta interior negra con una pregunta filosófica en plata/blanco (Ej: ¿Qué parte de ti reconoció esta obra antes que tu mente?). La pregunta varía según el diseño.
+7. Stack Técnico
+CMS/Ecommerce: Shopify (Tema custom, sin usar plantillas predefinidas).
+Lenguaje: Liquid (Shopify) + HTML/CSS.
+Animaciones: GSAP (GreenSock) + ScrollTrigger para movimientos lentos y revelaciones.
+Proveedor POD: Apliik (bajo demanda, máxima calidad de impresión y confección).
