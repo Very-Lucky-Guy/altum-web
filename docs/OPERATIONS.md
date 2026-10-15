@@ -9,7 +9,7 @@ Confirmed Apliiq product: 6202398, black AS Colour 5069. Six size SKUs are in `l
 ## Connect and launch
 
 1. Provision dedicated PostgreSQL for ALTUM. Put the pooled connection URL in `DATABASE_URL`, with TLS per provider instructions. Do not reuse another business's database. Run `npm run db:migrate`. The private `altum` schema has RLS with no public policies. The server role must own the schema or have explicit server privileges.
-2. Select ALTUM's Stripe account; the locally authenticated CHERRY EXPERT account is unrelated. Prefer a restricted key with Account read and Checkout Session read/write permissions. Use a separate Stripe sandbox during development.
+2. Confirm which merchant account will receive ALTUM payments. The available browser session is CHERRY EXPERT; do not assume it is a separate ALTUM account. Prefer a restricted key with Account read and Checkout Session read/write permissions. Use a separate Stripe sandbox during development.
 3. Register `/api/webhooks/stripe` for `checkout.session.completed` and `checkout.session.async_payment_succeeded`. Set its signing secret. Enable customer payment receipts in Stripe Dashboard.
 4. Create custom store `ALTUM Web` in Apliiq Account > Stores. Creating persistent credentials through the browser requires action-time confirmation. Store app ID/shared secret securely in Vercel. Set fulfillment URL to `/api/webhooks/apliiq`.
 5. Configure `.env.example` values in Vercel. `SITE_URL` is the exact public origin without trailing slash. All prices are integer US cents. Shipping must be explicit; zero intentionally means free. Supply approved EN/ES delivery and returns policies and customer support email.
