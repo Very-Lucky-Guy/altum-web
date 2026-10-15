@@ -4,6 +4,16 @@
 
 The storefront and server adapters are implemented. Live sales still require the correct Stripe account, Apliiq custom store credentials, a dedicated database, approved prices, shipping/return policies, customer support address and tax configuration. No real charge or production order was made during development.
 
+The custom domain is deferred at the owner's request. Use **https://altum-web-six.vercel.app** as `SITE_URL` and for both provider callbacks. A custom domain is not required for HTTPS, Checkout or signed webhooks. Do not wait for domain registration to complete the steps below.
+
+Run `npm run setup:check` with server environment variables loaded to verify the published catalog, database schema/RLS and Stripe account. It prints configuration names and pass/pending/failure states, never keys or customer records. Exit code 1 means setup remains incomplete; it does not mean that the public gallery is offline. The command does not charge cards or submit factory orders.
+
+On 2026-10-15 a temporary, isolated Stripe sandbox was created for development. It expires on 2026-10-22 unless claimed. Its credentials are kept outside Git and are **not** production credentials. The unclaimed sandbox key cannot retrieve the Account resource, so it cannot pass the store's account verification until claimed and correctly authorized. Do not deploy an expiring, unclaimed sandbox as the live merchant account.
+
+The actual `checkout()` request was accepted by Stripe in that sandbox with a USD 1.00 test-only amount, zero test shipping and US-only delivery. The session was expired after verification. Persistence was simulated for this request-format check: it was not an end-to-end paid-order test, and USD 1.00 is not an approved retail price. No factory order was submitted.
+
+Production has explicit `SALES_ENABLED=false`, `FULFILLMENT_ENABLED=false`, `STRIPE_LIVE_MODE=false` and `TAX_REVIEW_COMPLETE=false`, plus a sensitive random `CRON_SECRET`. The authorized scheduled worker returns zero processed orders without opening a database connection while fulfillment is disabled.
+
 Confirmed Apliiq product: 6202398, black AS Colour 5069. Six size SKUs are in `lib/catalog.js`. Cobalt/Fuchsia have no production SKUs and remain unavailable. Never substitute Original SKUs for different artwork.
 
 ## Connect and launch

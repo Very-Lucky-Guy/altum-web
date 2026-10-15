@@ -50,6 +50,22 @@ test('HTTP rejects unauthenticated fulfillment and unsigned factory callbacks', 
   assert.equal((await api.fetch(new Request('http://localhost/api/webhooks/apliiq', { method: 'POST', body: '{}' }))).status, 401);
   assert.equal((await api.fetch(new Request('http://localhost/api/checkout', { method: 'POST', body: '{}' }))).status, 403);
 });
+test('Authorized scheduled worker stays idle while factory fulfillment is disabled and database is not installed', async () => {
+  const previous = Object.fromEntries(['CRON_SECRET', 'FULFILLMENT_ENABLED', 'DATABASE_URL'].map(key => [key, process.env[key]]));
+  try {
+    process.env.CRON_SECRET = 'test-worker-secret';
+    process.env.FULFILLMENT_ENABLED = 'false';
+    delete process.env.DATABASE_URL;
+    const response = await api.fetch(new Request('http://localhost/api/fulfill', { headers: { authorization: 'Bearer test-worker-secret' } }));
+    assert.equal(response.status, 200);
+    assert.deepEqual(await response.json(), { processed: 0 });
+    assert.equal((await api.fetch(new Request('http://localhost/api/fulfill'))).status, 401);
+  } finally {
+    for (const [key, value] of Object.entries(previous)) {
+      if (value === undefined) delete process.env[key]; else process.env[key] = value;
+    }
+  }
+});
 test('PostgreSQL: concurrent callbacks and workers manufacture each paid piece at most once', { skip: !process.env.TEST_DATABASE_URL }, async t => {
   const sql = postgres(process.env.TEST_DATABASE_URL, { max: 8 });
   try {

@@ -1,34 +1,26 @@
-# altumwear.com deployment
+# Public address and callback configuration
 
-Configured on 2026-10-15:
+The owner deferred buying a domain on 2026-10-15. The active storefront is:
 
-- GitHub: Very-Lucky-Guy/altum-web, production branch main.
-- Vercel: pecplus/altum-web, automatic deployments from GitHub.
-- Existing public URL: https://altum-web-six.vercel.app
-- Production domains added and verified in Vercel: altumwear.com and www.altumwear.com.
-- www redirects permanently (308) to altumwear.com.
-- Cloudflare account: 1dba4e14a82f10ce0e1be336ece6df28.
-- Zone: d121d9f6b2a22a36902a1096e0be92cf, Free plan.
-- Both Cloudflare CNAME records point to 0fe3b320e0d38551.vercel-dns-016.com, DNS only, TTL 300. This is the recommended target returned by Vercel's domain configuration API.
+https://altum-web-six.vercel.app
 
-## Pending activation
+GitHub repository: `Very-Lucky-Guy/altum-web`, production branch `main`.
+Vercel project: `pecplus/altum-web`, automatically deployed from GitHub.
 
-The domain is registered at Wix.com Ltd., not GoDaddy. GoDaddy contains an old website workspace but no altumwear.com registration. RDAP and public DNS currently show ns6.wixdns.net and ns7.wixdns.net. No DS records are present.
+Use this HTTPS origin for the current integration:
 
-Required Cloudflare nameservers:
+- `SITE_URL=https://altum-web-six.vercel.app`
+- Stripe: `https://altum-web-six.vercel.app/api/webhooks/stripe`
+- Apliiq: `https://altum-web-six.vercel.app/api/webhooks/apliiq`
 
-- jacob.ns.cloudflare.com
-- tori.ns.cloudflare.com
+No domain purchase, DNS delegation or custom-domain activation is required to configure payments, persist orders or receive provider callbacks on this address.
 
-Sign into the owning Wix account, review/export the complete DNS zone, preserve any custom subdomain/email records, unassign the old Wix site if necessary, then change the nameservers. The initial Cloudflare scan found only the three Wix apex A records and www CNAME; those were replaced in the pending Cloudflare zone. Existing authoritative Wix records remain untouched.
+## Previous domain investigation
 
-After delegation changes, verify public NS and A/CNAME resolution, Vercel configuration and TLS for both names. Then set SITE_URL=https://altumwear.com in Vercel production and redeploy from GitHub before enabling checkout. Stripe/Apliiq callbacks should use the same canonical hostname.
+`altumwear.com` ownership was not established. The owner's original registration expired in April 2021; current RDAP shows a new registration in April 2026 through Wix. GoDaddy contains a website workspace, not the domain registration. Do not treat this domain as an ALTUM-owned production address or attempt to change its authoritative DNS.
 
-## Previous public DNS
+A pending, inactive Cloudflare zone and Vercel domain associations were prepared earlier. They do not establish domain ownership and do not change the current authoritative Wix DNS. The historical configuration is retained in `docs/archive/DOMAIN-SETUP-2026-10-15.md` for reference only; its activation instructions are superseded.
 
-- A @: 185.230.63.171
-- A @: 185.230.63.186
-- A @: 185.230.63.107
-- CNAME www: cdn3.wixdns.net
+## When a domain is selected later
 
-Official Wix instructions: https://support.wix.com/en/article/changing-nameserver-ns-records-for-a-wix-domain
+Verify ownership and the checkout price before registration. Add the chosen domain to Vercel and use the DNS targets Vercel returns for that specific project. Verify HTTPS before changing `SITE_URL`, callback URLs, payment return URLs or public links. Update the Stripe endpoint's signing secret if replacing the endpoint. Keep the existing callback address available while pending events are reconciled.

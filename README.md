@@ -24,4 +24,6 @@ Static HTML/CSS/JavaScript, Vercel Node functions, Stripe hosted Checkout, Aplii
 
 See [operations and outstanding setup](docs/OPERATIONS.md). Deployment alone does not enable live sales. Credentials belong in Vercel, never GitHub.
 
+The current public address is https://altum-web-six.vercel.app. A custom domain is deferred and is not a prerequisite for payment or fulfillment setup. Run `npm run setup:check` with server environment variables loaded to see exactly which connections are ready and which remain pending.
+
 The historical blueprint in `docs/archive` is retained for reference. This implementation replaces its earlier FLOREBO/Shopify direction.

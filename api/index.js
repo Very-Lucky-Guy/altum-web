@@ -49,6 +49,7 @@ export default { async fetch(request) {
     }
     if (request.method === 'GET' && pathname === '/api/fulfill') {
       if (!authorized(request.headers.get('authorization'), process.env.CRON_SECRET)) return json({ error: 'Unauthorized' }, 401);
+      if (process.env.FULFILLMENT_ENABLED !== 'true') return json({ processed: 0 });
       const sql = db();
       const result = await runQueue(sql);
       await sql`DELETE FROM altum.rate_limits WHERE expires_at < now()`;
