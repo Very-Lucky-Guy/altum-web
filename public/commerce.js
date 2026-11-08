@@ -1,5 +1,5 @@
 (() => {
-  let catalog = null, busy = false, requestKey = null, selection = { edition: 'original', size: null, language: 'en' };
+  let catalog = null, busy = false, requestKey = null, selection = { edition: 'original', size: null, language: window.AltumLanguage.get() };
   const button = document.querySelector('#purchase');
   const note = document.querySelector('#purchase-note');
   const copy = {
@@ -35,7 +35,7 @@
   fetch('/api/catalog').then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(data => { catalog = data; render(); }).catch(render);
   render();
   if (new URLSearchParams(location.search).get('checkout') === 'cancelled') {
-    openWork('original'); note.textContent = copy.en.cancelled;
+    openWork('original'); note.textContent = copy[selection.language].cancelled;
     history.replaceState(null, '', '/#works');
   }
 })();

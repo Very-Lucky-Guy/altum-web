@@ -1,5 +1,5 @@
 (() => {
-  let language = 'en', order = null, attempts = 0, support = null;
+  let language = window.AltumLanguage.get(), order = null, attempts = 0, support = null;
   const token = location.hash.slice(1);
   const states = {
     en: { checkout_pending: 'We are waiting for payment confirmation. This page updates automatically.', paid: 'Payment confirmed. Your piece is awaiting production.', submitting: 'Payment confirmed. We are arranging production.', provider_pending: 'Payment confirmed. Your order is awaiting confirmation from our production partner.', production: 'Your piece is in production.', shipped: 'Your piece has shipped.', test_paid: 'Test payment confirmed. No garment will be produced.', needs_review: 'Your order needs attention from our team. Please contact us with your order number.' },
@@ -8,6 +8,8 @@
   function render() {
     document.documentElement.lang = language;
     document.querySelector('#order-language').textContent = language === 'en' ? 'ES' : 'EN';
+    document.querySelector('#order-language').setAttribute('aria-label', language === 'en' ? 'Switch to Spanish' : 'Cambiar a inglés');
+    document.title = language === 'en' ? 'Your piece — ALTUM' : 'Tu pieza — ALTUM';
     document.querySelector('#order-title').textContent = language === 'en' ? 'Your piece.' : 'Tu pieza.';
     document.querySelector('#return-link').textContent = language === 'en' ? 'RETURN TO ALTUM' : 'VOLVER A ALTUM';
     document.querySelector('#order-message').textContent = order ? (states[language][order.state] || states[language].needs_review) : language === 'en' ? 'We could not retrieve this order. Please use the link provided at checkout.' : 'No pudimos consultar este pedido. Utiliza el enlace que recibiste al pagar.';
@@ -22,7 +24,7 @@
     render();
     if (order && attempts++ < 30 && ['checkout_pending', 'paid', 'submitting'].includes(order.state)) setTimeout(refresh, 10000);
   }
-  document.querySelector('#order-language').addEventListener('click', () => { language = language === 'en' ? 'es' : 'en'; render(); });
+  document.querySelector('#order-language').addEventListener('click', () => { language = language === 'en' ? 'es' : 'en'; window.AltumLanguage.set(language); render(); });
   fetch('/api/catalog').then(r => r.json()).then(data => { support = data.supportEmail; render(); }).catch(() => {});
   refresh();
 })();
