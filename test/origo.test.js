@@ -21,3 +21,15 @@ test('closed until all 18 unique variants are linked to matching templates',()=>
   }
   assert.equal(origoCatalog({}).available,false);
 });
+
+test('WooCommerce links use the selected variation and never open the Shopify checkout on invalid Woo configuration', () => {
+  const wooEnv = { ...env(), ORIGO_WOO_LIVE: 'true', ORIGO_WOO_ORIGIN: 'https://checkout.example', ORIGO_WOO_MAP: JSON.stringify(map) };
+  for (const edition of Object.keys(templates)) for (const size of sizes) {
+    const url = new URL(origoCheckout({edition, size}, wooEnv).url);
+    assert.equal(url.host, origoCatalog(wooEnv).checkoutHost);
+    assert.equal(url.pathname, '/checkout-link/');
+    assert.equal(url.searchParams.get('products'), map[edition].variants[size] + ':1');
+  }
+  assert.equal(origoCatalog({...wooEnv, ORIGO_WOO_ORIGIN:'http://checkout.example'}).available, false);
+  assert.throws(() => origoCheckout({edition:'cobalt', size:'2XL'}, {...wooEnv, ORIGO_WOO_MAP:'{}'}), {status:503});
+});
