@@ -11,3 +11,17 @@
 /* Quiet interaction cues are drawn with type, spacing and fine rules. */
 .text-link{width:fit-content;min-width:180px;text-align:left;line-height:1.7;transition:border-color .4s,color .4s}.text-link:hover,.text-link:focus-visible{border-color:#e8e6e1;color:#fff}.edition-caption{transition:border-color .45s}.edition-card:hover .edition-caption,.edition-card:focus-visible .edition-caption{border-color:#817c71}.dialog-top>button{border-bottom:1px solid #35332e;padding:10px 0;transition:border-color .4s}.dialog-top>button:hover{border-color:#aba393}
 .piece-price{font-size:18px;letter-spacing:.04em;margin:0 0 20px}.piece-price:empty{display:none}.purchase-note{font-size:10px;color:var(--muted);line-height:1.7;min-height:17px}.release-button:not(:disabled){background:#e8e6e1;color:#111;border-color:#e8e6e1;cursor:pointer;transition:background .3s}.release-button:not(:disabled):hover{background:#fff}.service-details a{border-bottom:1px solid #514c42}.order-page{max-width:650px;margin:0 auto;padding:70px 7vw;min-height:100svh}.order-page>p,.order-page #tracking{color:#aaa59b;line-height:1.8;font-size:14px}.order-page h1{font-size:55px;margin:25px 0}.order-page>.text-link{margin-top:50px}.order-heading{display:flex;justify-content:space-between;margin-top:75px}.order-heading button{font-size:11px}
+
+.piece-views{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px;margin:0 8vw 96px}
+.piece-preview{padding:0;text-align:left}
+.piece-preview img{width:100%;height:clamp(235px,43vw,580px);object-fit:contain;background:#000}
+.piece-preview span{display:block;border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:12px}
+.detail-gallery>[hidden]{display:none}
+#neck-view{margin:0;height:min(70svh,720px);align-content:center}
+.neck-frame{position:relative;width:100%}
+.neck-fabric{width:100%;height:auto}
+.neck-print{position:absolute;top:47%;left:50%;transform:translateX(-50%);width:23%;text-align:center;color:#eee}
+.neck-print img{width:100%;height:auto}
+.neck-print span{display:block;margin-top:.5em;font:500 clamp(10px,1.1vw,15px)/1 Arial,sans-serif}
+.view-buttons{gap:clamp(10px,2vw,22px);flex-wrap:wrap}
+@media(max-width:760px){.piece-views{gap:12px;margin:0 7vw 60px}.piece-preview img{height:clamp(170px,52vw,285px)}#neck-view{height:55svh}}
