@@ -1,7 +1,7 @@
 import { timingSafeEqual } from 'node:crypto';
-import { catalog } from '../lib/catalog.js';
+import { origoCatalog, origoCheckout } from '../lib/origo.js';
 import { db } from '../lib/db.js';
-import { stripe, verifyAccount, checkout, acceptPayment } from '../lib/payments.js';
+import { stripe, verifyAccount, acceptPayment } from '../lib/payments.js';
 import { runQueue } from '../lib/fulfillment.js';
 import { validCallback } from '../lib/apliiq.js';
 import { acceptTracking } from '../lib/tracking.js';
@@ -20,15 +20,13 @@ async function body(request) {
 export default { async fetch(request) {
   const { pathname } = new URL(request.url);
   try {
-    if (request.method === 'GET' && pathname === '/api/catalog') return json(catalog());
+    if (request.method === 'GET' && pathname === '/api/catalog') return json(origoCatalog());
     if (request.method === 'POST' && pathname === '/api/checkout') {
       if (!process.env.SITE_URL || request.headers.get('origin') !== new URL(process.env.SITE_URL).origin) return json({ error: 'Invalid origin' }, 403);
       if (!request.headers.get('content-type')?.includes('application/json')) return json({ error: 'JSON required' }, 415);
       const input = JSON.parse(await body(request));
       if (!input || typeof input !== 'object') return json({ error: 'Invalid request' }, 400);
-      if (!catalog().available) return json({ error: 'Purchases are not open yet.' }, 503);
-      await verifyAccount();
-      return json(await checkout(db(), input, request.headers.get('x-vercel-forwarded-for') || 'local'));
+      return json(origoCheckout(input));
     }
     if (request.method === 'POST' && pathname === '/api/webhooks/stripe') {
       if (!process.env.STRIPE_WEBHOOK_SECRET) return json({ error: 'Not configured' }, 503);

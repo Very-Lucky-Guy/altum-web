@@ -13,13 +13,13 @@
     button.disabled = !ready || !item.sizes.includes(selection.size) || busy;
     button.textContent = busy ? text.opening : !ready ? text.soon : !selection.size ? text.choose : text.buy;
     document.querySelector('#piece-price').textContent = item?.price ? `${money(item.price)} USD` : '';
-    note.textContent = !catalog ? text.unavailable : !ready ? text.notOpen : catalog.testMode ? text.test : catalog.shipping === 0 ? text.included : `${text.shipping}: ${money(catalog.shipping)}`;
+    note.textContent = !catalog ? text.unavailable : !ready ? text.notOpen : (selection.language === 'es' ? 'Precio final y envío al continuar.' : 'See final price and shipping at checkout.');
     document.querySelector('#shipping-policy').textContent = catalog?.policies[selection.language].shipping || text.policies;
     document.querySelector('#returns-policy').textContent = catalog?.policies[selection.language].returns || '';
     const service = document.querySelector('#customer-service'); service.replaceChildren();
     if (catalog?.supportEmail) { const a = document.createElement('a'); a.href = `mailto:${catalog.supportEmail}`; a.textContent = catalog.supportEmail; service.append(a); }
   }
-  document.addEventListener('selectionchange', event => { if (selection.edition !== event.detail.edition || selection.size !== event.detail.size) requestKey = null; selection = event.detail; render(); });
+  document.addEventListener('selectionchange', event => { if (!event.detail) return; if (selection.edition !== event.detail.edition || selection.size !== event.detail.size) requestKey = null; selection = event.detail; render(); });
   button.addEventListener('click', async () => {
     if (button.disabled || busy) return;
     busy = true; requestKey ||= crypto.randomUUID(); render();
@@ -28,7 +28,7 @@
       const data = await response.json();
       if (!response.ok) { if (response.status === 409) requestKey = null; throw new Error('Checkout failed'); }
       const url = new URL(data.url);
-      if (url.protocol !== 'https:' || url.hostname !== 'checkout.stripe.com') throw new Error('Invalid checkout');
+      if (url.protocol !== 'https:' || url.host !== catalog.checkoutHost) throw new Error('Invalid checkout');
       window.location.assign(url.href);
     } catch { busy = false; render(); note.textContent = copy[selection.language].error; }
   });
