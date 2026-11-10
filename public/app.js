@@ -25,7 +25,7 @@ function renderEdition() {
   detailImage.hidden = !neck.hidden;
   document.querySelector('#neck-size').textContent = size || '2XL';
   if (neck.hidden) {
-    const images = { art: current.image, front: 'assets/origo-001/front.webp', back: 'assets/origo-001/' + edition + '-back.webp' };
+    const images = { art: current.image, front: 'assets/origo-001/boxy-front.webp', back: 'assets/origo-001/boxy-' + edition + '-back.webp' };
     detailImage.src = images[view];
     detailImage.alt = 'ORIGO ' + current.name + ' / ' + viewNames[language][view];
   }
