@@ -9,7 +9,7 @@ test('every black edition and size opens exactly its selected Shopify variant',(
   for(const edition of Object.keys(templates)) for(const size of sizes) {
     const url=new URL(origoCheckout({edition,size,language:'es'},env()).url);
     assert.equal(url.pathname,'/cart/'+map[edition].variants[size]+':1');
-    assert.equal(url.hostname,'aikiij-wf.myshopify.com');
+    assert.equal(url.hostname,'rx2zf4-ht.myshopify.com');
   }
   assert.throws(()=>origoCheckout({edition:'cobalt',size:'3XL'},env()));
 });
