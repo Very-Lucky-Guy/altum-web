@@ -26,17 +26,15 @@
 .view-buttons{gap:clamp(10px,2vw,22px);flex-wrap:wrap}
 @media(max-width:760px){.piece-views{gap:12px;margin:0 7vw 60px}#neck-view{height:55svh}}
 
-/* Match the mask to the contained photograph at every gallery size. */
-img[src$="boxy-front.webp"] {
-  mask-image: url("assets/origo-001/boxy-front-mask.webp");
-}
-img[src$="-back.webp"].garment,
-.piece-preview img[src$="-back.webp"] {
-  mask-image: url("assets/origo-001/boxy-back-mask.webp");
-}
-.piece-preview img,
-.detail-gallery > img.garment {
-  mask-size: contain;
-  mask-position: center;
-  mask-repeat: no-repeat;
-}
+
+.studio-front{display:block;width:100%;height:auto;aspect-ratio:1}
+.detail-gallery>.studio-front{width:100%;height:min(70svh,720px)}
+.detail-gallery>[hidden]{display:none}
+.neck-frame{container-type:inline-size}
+.neck-print{width:43%;top:31%;color:#eceae5}
+.neck-print img{display:block;width:100%;height:auto}
+.neck-print span{font-size:2.35cqw;line-height:1;margin-top:.56em}
+.inside-entry{display:inline-flex;align-items:center;gap:12px;justify-self:start;color:var(--muted);padding:7px 0;font-size:12px}
+.inside-entry:hover,.inside-entry:focus-visible{color:white}
+@media(max-width:760px){.detail-gallery>.studio-front{height:55svh}}
+@media(max-width:550px){.piece-views{grid-template-columns:1fr;gap:24px}.inside-entry{margin-top:-8px}}

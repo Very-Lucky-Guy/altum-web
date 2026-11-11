@@ -22,10 +22,13 @@ function renderEdition() {
   }
   const neck = document.querySelector('#neck-view');
   neck.hidden = view !== 'neck';
-  detailImage.hidden = !neck.hidden;
+  const front = document.querySelector('#front-view');
+  front.toggleAttribute('hidden', view !== 'front');
+  detailImage.hidden = view === 'neck' || view === 'front';
+  document.querySelector('#front-size').textContent = size || '2XL';
   document.querySelector('#neck-size').textContent = size || '2XL';
-  if (neck.hidden) {
-    const images = { art: current.image, front: 'assets/origo-001/boxy-front.webp', back: 'assets/origo-001/boxy-' + edition + '-back.webp' };
+  if (!detailImage.hidden) {
+    const images = { art: current.image, back: 'assets/origo-001/studio-' + edition + '-back.webp' };
     detailImage.src = images[view];
     detailImage.alt = 'ORIGO ' + current.name + ' / ' + viewNames[language][view];
   }
